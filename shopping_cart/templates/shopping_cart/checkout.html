@@ -6,6 +6,8 @@
     <title>Checkout</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}">
+  <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+
     <style>
       #checkoutMethods {
         background: #fff;
@@ -23,50 +25,39 @@
 
 <body>
     {% include 'messages.html' %}
-    <div class="container">
-    <section>
-      <div class="row" id="tablerow">
-      <div class="col-md-4 col-xs-12">
-        <div class="panel panel-primary">
-          
-          <div class="panel-body">
-            <h5>Enter Voucher Code Below<br><small>If multiple, separate each with comma</small></h5>
-
-            <div>
-              <form action="." method="post">
-                {% csrf_token %}
-                <input type="text"  name="voucher_codes" class="form-control" id="voucher_code" required>
-                <input type="hidden"  name="order_id" value="{{ order.id }}">
-                <br>
-                <span>
-                  <input type="submit" class="btn btn-warning pull-right" value="Apply Voucher"> 
-                </span>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-8 col-xs-12">
-        <table class="table">
-          <tr>
-            <td><h4>Order Summary</h4></td>
+      <div class="col-md-8 col-xs-12 checkout-summary" style="
+    width: 300px;
+    height: fit-content;
+    background: white;
+    margin-left: 20px;
+    margin-top: 40px;
+        position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+">
+        <table class="table" style="border:none ; text-align:left;">
+          <tr style="border:none ;">
+            <td style="border:none ; text-align:center;"><h4>Order Summary</h4></td>
           </tr>
-          <tr>
-            <td>
+          <tr style="border:none ;">
+
+              <td style="border:none; text-align:left;">Item</td>
+            <td style="border:none; text-align:left;">Cost</td>
               {% for item in order.get_cart_items %}
-                <tr>
-                  <td>{{ item }}</td>
-                  <td>${{ item.product.price }}</td>
+                <tr style="border:none ;">
+
+                  <td style="border:none; text-align:left;">{{ item }}</td>
+                  <td style="border:none; text-align:left;">${{ item.product.price }}</td>
                 </tr>
               {% endfor %}
             </td>
           </tr>
-          <tr>
-            <td><strong>Order Total</strong> </td>
-            <td> <strong>${{ order.get_cart_total }}</strong></td>
+          <tr style="border:none; text-align:left;">
+            <td style="border:none; text-align:left;" ><strong style="border:none;">Order Total</strong> </td>
+            <td style="border:none; text-align:left;"> <strong>${{ order.get_cart_total }}</strong></td>
           </tr>
         </table>
-        <button onclick="toggleDisplay();" class="btn btn-warning" style="width: 100%;">Checkout with a credit card</button>
       </div>
      </div>
     </section>
