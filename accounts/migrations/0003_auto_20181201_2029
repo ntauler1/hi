@@ -1,0 +1,16 @@
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('accounts', '0002_auto_20181201_2029'),
+    ]
+
+    operations = [
+        migrations.AlterField(
+            model_name='profile',
+            name='ebooks',
+            field=models.ManyToManyField(blank=True, to='products.Product'),
+        ),
+    ]
